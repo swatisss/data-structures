@@ -5,7 +5,50 @@
  */
 package datastructures.linkedlist;
 
-public class InsertElementAtTail {
+
+
+public class ReverseLinkedList {
+    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+        if(head == null){
+            return head;
+        }
+        SinglyLinkedListNode prev = null;
+        SinglyLinkedListNode next = null;
+        SinglyLinkedListNode cur = head;
+        while(cur != null){
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        head = prev;
+        return head;
+    }
+    public static void main(String[] s){
+        SinglyLinkedListNode head = null;
+        print(head);
+        head = insertNodeAtTail(head, 141);
+        print(head);
+        head = insertNodeAtTail(head, 302);
+        print(head);
+        head = insertNodeAtTail(head, 164);
+        print(head);
+        head = insertNodeAtTail(head, 530);
+        print(head);
+        head = insertNodeAtTail(head, 474);
+        print(head);
+        head = reverse(head);
+        print(head);
+    }
+    static void print(SinglyLinkedListNode head){
+        SinglyLinkedListNode curr = head;
+        while(curr!= null){
+            System.out.print(curr.data+" ->");
+            curr = curr.next;
+        }
+        System.out.print("NULL");
+        System.out.println();
+    }
     static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
         SinglyLinkedListNode last = new SinglyLinkedListNode();
         last.data = data;
@@ -23,37 +66,5 @@ public class InsertElementAtTail {
         }
         curr.next = last;
         return head;
-    }
-    public static void main(String[] s){
-        SinglyLinkedListNode head = null;
-        print(head);
-        head = insertNodeAtTail(head, 141);
-        print(head);
-        head = insertNodeAtTail(head, 302);
-        print(head);
-        head = insertNodeAtTail(head, 164);
-        print(head);
-        head = insertNodeAtTail(head, 530);
-        print(head);
-        head = insertNodeAtTail(head, 474);
-        print(head);
-        printReverse(head);
-    }
-    static void print(SinglyLinkedListNode head){
-        SinglyLinkedListNode curr = head;
-        while(curr!= null){
-            System.out.print(curr.data+" ->");
-            curr = curr.next;
-        }
-        System.out.print("NULL");
-        System.out.println();
-    }
-    
-    static void printReverse(SinglyLinkedListNode node){
-        if(node == null){
-           return;
-        }
-        printReverse(node.next);
-        System.out.println(node.data);
     }
 }
